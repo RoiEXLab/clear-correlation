@@ -4,6 +4,9 @@ import {
 import React from 'react';
 import ChartComponent from './ChartComponent';
 
+const HASH_X_LABEL = 'x-label';
+const HASH_Y_LABEL = 'y-label';
+
 const useStyles = makeStyles((theme) => ({
   root: {
     height: '100%',
@@ -36,6 +39,24 @@ function App() {
   const [yLabel, setYLabel] = React.useState('');
 
   const handleChange = (setter) => (event) => setter(event.target.value);
+
+  React.useEffect(() => {
+    const params = new URLSearchParams(window.location.hash.slice(1));
+    setXLabel(params.get(HASH_X_LABEL) || '');
+    setYLabel(params.get(HASH_Y_LABEL) || '');
+  }, []);
+
+  React.useEffect(() => {
+    if (xLabel && yLabel) {
+      const params = new URLSearchParams({
+        [HASH_X_LABEL]: xLabel,
+        [HASH_Y_LABEL]: yLabel,
+      });
+      window.location.hash = params.toString();
+    } else {
+      window.location.hash = '';
+    }
+  }, [xLabel, yLabel]);
 
   const classes = useStyles();
 
