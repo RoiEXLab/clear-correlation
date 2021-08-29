@@ -1,4 +1,5 @@
-import { Dialog, Button } from '@material-ui/core';
+import { Button, Container } from '@material-ui/core';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import React from 'react';
 import {
@@ -6,7 +7,14 @@ import {
 } from 'victory';
 import domToImage from 'dom-to-image';
 
-const axisStyle = {
+const useStyles = makeStyles({
+  container: (props) => ({
+    display: props.xLabel && props.yLabel ? 'unset' : 'none',
+    maxHeight: '75vh',
+  }),
+});
+
+const getAxisStyle = (theme) => ({
   ticks: {
     stroke: 'transparent',
   },
@@ -16,7 +24,19 @@ const axisStyle = {
   tickLabels: {
     fill: 'transparent',
   },
-};
+  axis: {
+    stroke: theme.palette.primary.main,
+  },
+  axisLabel: {
+    fill: theme.palette.text.primary,
+  },
+});
+
+const getLineStyle = (theme) => ({
+  data: {
+    stroke: theme.palette.primary.main,
+  },
+});
 
 const dataSize = 25;
 const dataNoise = 0.5;
@@ -28,18 +48,22 @@ const randomData = () => Array.from(new Array(dataSize).keys()).map((value) => (
   y: applyNoise(value),
 }));
 
-function ChartDialog(props) {
+function ChartComponent(props) {
   const {
-    open, handleClose, xLabel, yLabel,
+    xLabel, yLabel,
   } = props;
+  const theme = useTheme();
+  const axisStyle = getAxisStyle(theme);
+  const lineStyle = getLineStyle(theme);
+  const classes = useStyles(props);
   const chartElement = React.useRef(null);
   const [data, setData] = React.useState([]);
 
   React.useEffect(() => {
-    if (open) {
+    if (xLabel && yLabel) {
       setData(randomData());
     }
-  }, [open]);
+  }, [!!(xLabel && yLabel)]);
 
   const storeAsImage = async () => {
     const imageUrl = await domToImage.toSvg(chartElement.current);
@@ -50,24 +74,22 @@ function ChartDialog(props) {
   };
 
   return (
-    <Dialog open={open} onClose={handleClose}>
+    <Container className={classes.container} maxWidth="md">
       <div ref={chartElement}>
         <VictoryChart theme={VictoryTheme.material}>
-          <VictoryLine data={data} />
+          <VictoryLine data={data} style={lineStyle} />
           <VictoryAxis label={xLabel} style={axisStyle} />
           <VictoryAxis label={yLabel} style={axisStyle} dependentAxis />
         </VictoryChart>
       </div>
       <Button onClick={storeAsImage}>Export Chart</Button>
-    </Dialog>
+    </Container>
   );
 }
 
-ChartDialog.propTypes = {
-  open: PropTypes.bool.isRequired,
-  handleClose: PropTypes.func.isRequired,
+ChartComponent.propTypes = {
   xLabel: PropTypes.string.isRequired,
   yLabel: PropTypes.string.isRequired,
 };
 
-export default ChartDialog;
+export default ChartComponent;

@@ -1,51 +1,61 @@
 import {
-  AppBar, Button, Toolbar, Typography, TextField, makeStyles,
+  Typography, TextField, makeStyles,
 } from '@material-ui/core';
 import React from 'react';
-import ChartDialog from './ChartDialog';
+import ChartComponent from './ChartComponent';
 
-const useStyles = makeStyles({
-  flexDiv: {
+const useStyles = makeStyles((theme) => ({
+  root: {
+    height: '100%',
+    backgroundColor: theme.palette.background.default,
+    color: theme.palette.text.primary,
     display: 'flex',
     flexDirection: 'column',
+    textAlign: 'center',
   },
   textDiv: {
     textAlign: 'center',
     display: 'flex',
-    alignItems: 'center',
+    alignItems: 'baseline',
     justifyContent: 'center',
   },
-});
+  textFieldPadding: {
+    paddingLeft: '5px',
+    paddingRight: '5px',
+  },
+  alignRight: {
+    textAlign: 'right',
+  },
+}));
 
 function App() {
-  const [dialogOpen, setDialogOpen] = React.useState(false);
   const [xLabel, setXLabel] = React.useState('');
   const [yLabel, setYLabel] = React.useState('');
 
-  const handleClick = () => setDialogOpen(true);
   const handleChange = (setter) => (event) => setter(event.target.value);
-  const handleClose = () => setDialogOpen(false);
 
   const classes = useStyles();
 
   return (
-    <div>
-      <AppBar position="static">
-        <Toolbar>
-          <Typography>
-            There is a clear correlation between...
-          </Typography>
-        </Toolbar>
-      </AppBar>
-      <div className={classes.flexDiv}>
-        <div className={classes.textDiv}>
-          <TextField value={xLabel} onChange={handleChange(setXLabel)} />
-          and
-          <TextField value={yLabel} onChange={handleChange(setYLabel)} />
-        </div>
-        <Button onClick={handleClick}>Submit</Button>
-        <ChartDialog open={dialogOpen} xLabel={xLabel} yLabel={yLabel} handleClose={handleClose} />
+    <div className={classes.root}>
+      <Typography>
+        There is a clear correlation between
+      </Typography>
+      <div className={classes.textDiv}>
+        <TextField
+          value={xLabel}
+          onChange={handleChange(setXLabel)}
+          inputProps={{
+            className: classes.alignRight,
+          }}
+        />
+        <Typography className={classes.textFieldPadding}>and</Typography>
+        <TextField
+          value={yLabel}
+          onChange={handleChange(setYLabel)}
+        />
       </div>
+      <ChartComponent xLabel={xLabel} yLabel={yLabel} />
     </div>
   );
 }
