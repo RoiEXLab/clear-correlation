@@ -1,20 +1,20 @@
 {
   "files": {
     "main.css": "/clear-correlation/static/css/main.bea5ba9b.chunk.css",
-    "main.js": "/clear-correlation/static/js/main.6063dbcd.chunk.js",
-    "main.js.map": "/clear-correlation/static/js/main.6063dbcd.chunk.js.map",
+    "main.js": "/clear-correlation/static/js/main.4994c036.chunk.js",
+    "main.js.map": "/clear-correlation/static/js/main.4994c036.chunk.js.map",
     "runtime-main.js": "/clear-correlation/static/js/runtime-main.7d940198.js",
     "runtime-main.js.map": "/clear-correlation/static/js/runtime-main.7d940198.js.map",
-    "static/js/2.445b5c96.chunk.js": "/clear-correlation/static/js/2.445b5c96.chunk.js",
-    "static/js/2.445b5c96.chunk.js.map": "/clear-correlation/static/js/2.445b5c96.chunk.js.map",
+    "static/js/2.0b789e2c.chunk.js": "/clear-correlation/static/js/2.0b789e2c.chunk.js",
+    "static/js/2.0b789e2c.chunk.js.map": "/clear-correlation/static/js/2.0b789e2c.chunk.js.map",
     "index.html": "/clear-correlation/index.html",
     "static/css/main.bea5ba9b.chunk.css.map": "/clear-correlation/static/css/main.bea5ba9b.chunk.css.map",
-    "static/js/2.445b5c96.chunk.js.LICENSE.txt": "/clear-correlation/static/js/2.445b5c96.chunk.js.LICENSE.txt"
+    "static/js/2.0b789e2c.chunk.js.LICENSE.txt": "/clear-correlation/static/js/2.0b789e2c.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.7d940198.js",
-    "static/js/2.445b5c96.chunk.js",
+    "static/js/2.0b789e2c.chunk.js",
     "static/css/main.bea5ba9b.chunk.css",
-    "static/js/main.6063dbcd.chunk.js"
+    "static/js/main.4994c036.chunk.js"
   ]
 }
