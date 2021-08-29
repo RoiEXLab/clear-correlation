@@ -1,27 +1,29 @@
-import { AppBar, Button, Toolbar, Typography, TextField, makeStyles } from "@material-ui/core";
-import ChartDialog from "./ChartDialog";
+import {
+  AppBar, Button, Toolbar, Typography, TextField, makeStyles,
+} from '@material-ui/core';
 import React from 'react';
+import ChartDialog from './ChartDialog';
 
 const useStyles = makeStyles({
   flexDiv: {
     display: 'flex',
-    flexDirection: 'column'
+    flexDirection: 'column',
   },
   textDiv: {
     textAlign: 'center',
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'center'
-  }
+    justifyContent: 'center',
+  },
 });
 
 function App() {
-  const [ dialogOpen, setDialogOpen ] = React.useState(false);
-  const [ xLabel, setXLabel ] = React.useState('');
-  const [ yLabel, setYLabel ] = React.useState('');
+  const [dialogOpen, setDialogOpen] = React.useState(false);
+  const [xLabel, setXLabel] = React.useState('');
+  const [yLabel, setYLabel] = React.useState('');
 
   const handleClick = () => setDialogOpen(true);
-  const handleChange = setter => event => setter(event.target.value);
+  const handleChange = (setter) => (event) => setter(event.target.value);
   const handleClose = () => setDialogOpen(false);
 
   const classes = useStyles();
