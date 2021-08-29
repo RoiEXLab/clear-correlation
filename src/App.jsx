@@ -21,16 +21,15 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'baseline',
     justifyContent: 'center',
-  },
-  textFieldPadding: {
-    paddingLeft: '5px',
-    paddingRight: '5px',
+    flexWrap: 'wrap',
   },
   alignRight: {
     textAlign: 'right',
   },
   textField: {
-    minWidth: '35rem',
+    width: '35rem',
+    paddingLeft: '5px',
+    paddingRight: '5px',
   },
 }));
 
@@ -74,7 +73,7 @@ function App() {
           }}
           className={classes.textField}
         />
-        <Typography className={classes.textFieldPadding}>and</Typography>
+        <Typography>and</Typography>
         <TextField
           value={yLabel}
           onChange={handleChange(setYLabel)}

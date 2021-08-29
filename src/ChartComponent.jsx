@@ -14,6 +14,7 @@ const useStyles = makeStyles({
   }),
   wrapper: {
     backgroundColor: 'white',
+    margin: '10px',
   },
 });
 
@@ -32,6 +33,7 @@ const getAxisStyle = (theme) => ({
   },
   axisLabel: {
     fill: theme.palette.text.primary,
+    fontFamily: theme.typography.fontFamily,
   },
 });
 
