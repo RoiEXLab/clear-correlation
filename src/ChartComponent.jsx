@@ -12,6 +12,9 @@ const useStyles = makeStyles({
     display: props.xLabel && props.yLabel ? 'unset' : 'none',
     maxHeight: '75vh',
   }),
+  wrapper: {
+    backgroundColor: 'white',
+  },
 });
 
 const getAxisStyle = (theme) => ({
@@ -75,7 +78,7 @@ function ChartComponent(props) {
 
   return (
     <Container className={classes.container} maxWidth="md">
-      <div ref={chartElement}>
+      <div ref={chartElement} className={classes.wrapper}>
         <VictoryChart theme={VictoryTheme.material}>
           <VictoryLine data={data} style={lineStyle} />
           <VictoryAxis label={xLabel} style={axisStyle} />
