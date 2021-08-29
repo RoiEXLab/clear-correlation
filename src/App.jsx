@@ -26,6 +26,9 @@ const useStyles = makeStyles((theme) => ({
   alignRight: {
     textAlign: 'right',
   },
+  textField: {
+    minWidth: '35rem',
+  },
 }));
 
 function App() {
@@ -48,11 +51,13 @@ function App() {
           inputProps={{
             className: classes.alignRight,
           }}
+          className={classes.textField}
         />
         <Typography className={classes.textFieldPadding}>and</Typography>
         <TextField
           value={yLabel}
           onChange={handleChange(setYLabel)}
+          className={classes.textField}
         />
       </div>
       <ChartComponent xLabel={xLabel} yLabel={yLabel} />
