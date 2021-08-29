@@ -65,11 +65,11 @@ function ChartComponent(props) {
     }
   }, [!!(xLabel && yLabel)]);
 
-  const storeAsImage = async () => {
-    const imageUrl = await domToImage.toSvg(chartElement.current);
+  const storeAsImage = (format) => async () => {
+    const imageUrl = await format(chartElement.current);
     const dummyElement = document.createElement('a');
     dummyElement.href = imageUrl;
-    dummyElement.download = 'Correlation.svg';
+    dummyElement.download = `${xLabel}_${yLabel}_correlation`;
     dummyElement.click();
   };
 
@@ -82,7 +82,9 @@ function ChartComponent(props) {
           <VictoryAxis label={yLabel} style={axisStyle} dependentAxis />
         </VictoryChart>
       </div>
-      <Button onClick={storeAsImage}>Export Chart</Button>
+      <Button onClick={storeAsImage(domToImage.toSvg)}>Export Chart (.svg)</Button>
+      <br />
+      <Button onClick={storeAsImage(domToImage.toPng)}>Export Chart (.png)</Button>
     </Container>
   );
 }
